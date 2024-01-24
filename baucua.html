@@ -1,0 +1,279 @@
+<script src="jquery.min.js"></script>
+<style>
+.mycheckbox
+{
+ margin-top: 100px;
+    width: 20px;
+    height: 20px;
+}
+.betcheckdiv
+{
+width:200px; height:200px;text-align:center;background-size: cover	;background-repeat:no-repeat;
+}
+.wrapper
+{
+width:600px;
+}
+.leftcolumn
+{
+float:left;
+width:45%;
+}
+.rightcolumn
+{
+float:right;
+width:40%;
+}
+.mainplayerinfo
+{
+float:left;
+width:45%;
+ border: 1px solid #ccc;
+ padding:5px;
+}
+.AIplayerinfo
+{
+ border: 1px solid #ccc;
+float:right;
+width:45%;
+padding:5px;
+}
+.subheader{
+background:#a50b2f;padding: 5px;color: #e2bd36;
+}
+.subsubheader
+{
+    background: #e2bd36;
+    padding: 5px;
+}
+.subcontent{
+   padding: 5px;
+    background: #dddcc9;
+}
+</style>
+<script type="text/javascript">
+//lắc bầu
+
+// xác định mặt xí ngầu
+//1 nai 2 bầu 3 gà 4 cá 5 cua 6 tôm
+
+//ban đầu cho 100k làm vốn
+var sotienplayer1 = 100000;
+function xacdinh (x)
+{
+switch (x)
+{
+case 1: x = "<img src=\"img/nai.gif\" style=\"width:80\"/>";
+break;
+case 2: x = "<img src=\"img/bau.gif\" style=\"width:80\"/>";
+break;
+case 3: x = "<img src=\"img/ga.gif\" style=\"width:80\"/>";
+break;
+case 4: x = "<img src=\"img/ca.gif\" style=\"width:80\"/>";
+break;
+case 5: x = "<img src=\"img/cua.gif\" style=\"width:80\"/>";
+break;
+case 6: x = "<img src=\"img/tom.gif\" style=\"width:80\"/>";
+}
+return x;
+}
+function xingaufunction()
+{
+//chỗ này mới hiện play info
+$(".showxingau").css("display", "none");
+$(".info").css("display", "block");
+}
+function finalresult()
+{
+}
+
+//random 3 viên xí ngầu, 1-6
+function lac()
+{
+xingau1 = Math.floor((Math.random() * 6) + 1);
+xingau1a = xacdinh (xingau1); // chuyển số sang mặt xí ngầu
+
+xingau2 = Math.floor((Math.random() * 6) + 1);
+xingau2a = xacdinh (xingau2);
+
+xingau3 = Math.floor((Math.random() * 6) + 1);
+xingau3a = xacdinh (xingau3);
+
+ketqua = xingau1a + " " + xingau2a + " " + xingau3a;
+$(".lacdisplay").append(ketqua);
+//$(".lacdisplay").append(xingau1+ " " + xingau2+ " " +xingau3);
+//tạo mảng lắc
+var ketqualac = [xingau1,xingau2,xingau3];
+
+//tạo mảng bet cho main player
+//var checkboxes = document.querySelectorAll('input[name="player1bet"]:checked'), values = [];
+var betarray = [];
+var betbyname = [];
+$("input:checkbox[name=player1bet]:checked").each(function(){
+    betarray.push($(this).val());
+	$(".betdisplay").append($(this).val());
+});
+//chạy hàm so sánh
+//kiểm tra trúng hay trật
+
+//for each item of bet, check if it is in the lắc array
+//alert (ketqualac.length);
+var sotrung = 0;
+var sotrat = 0;
+//alert (betarray.length);
+function include(arr, obj) {
+    for(var i=0; i<arr.length; i++) {
+        if (arr[i] == obj) {
+		
+		//alert ("trúng");
+		//trúng thì tăng value trúng + 1, cuối cùng quy ra tiền
+		//trừ tiền tổng số đặt - số trúng = số thua * số tiền cược
+		sotrung = sotrung + 1;}
+		//trật thì tăng value trật
+
+    }
+	
+}
+var sodat = betarray.length;
+for (i = 0; i < betarray.length; i++) { 
+   // if ($.inArray(betarray[i], ketqualac)) {alert ("OK");} else { alert ("trật");}
+   
+include(ketqualac,betarray[i]);       
+}
+//tính điểm
+sotrat = sodat - sotrung;
+sotienupdate = sotrung*5000 + (0-(sotrat*5000));
+
+
+//chạy gif
+$(".showxingau").css("display", "block");
+setTimeout(xingaufunction, 3000);
+
+//sodat = xacdinh(sodat);
+$(".checker").html("Bạn đặt: " + sodat +"<br/>Trúng: "+sotrung + "<br/>Trật :" + sotrat + "<br/>Số tiền nhận được: "+sotienupdate);
+$("#sotien").html(sotienplayer1+sotienupdate);
+//chơi tiếp thì phải update lại sotienplayer1
+sotienplayer1 = sotienplayer1+sotienupdate;
+//kiểm tra bet by name
+for (k = 0; k < betarray.length; k++) { 
+x1 = betarray[k];
+if (x1 == 1) { x1 = "<img src=\"img/nai.gif\" style=\"width:80\"/>";} else
+
+if (x1 ==  2) { x1 = "<img src=\"img/bau.gif\" style=\"width:80\"/>";}else
+
+if (x1 == 3) { x1 = "<img src=\"img/ga.gif\" style=\"width:80\"/>";}else
+
+if (x1 ==  4) { x1 = "<img src=\"img/ca.gif\" style=\"width:80\"/>";}else
+
+if (x1 == 5) { x1 = "<img src=\"img/cua.gif\" style=\"width:80\"/>";}else
+
+if (x1 == 6) { x1 = "<img src=\"img/tom.gif\" style=\"width:80\"/>";}
+$(".betbyname").append(x1+" ");
+}
+
+
+}
+
+//xác nhận đặt - 
+function betconfirm()
+{
+ var checkboxes = document.querySelectorAll('input[name="player1bet"]:checked'), values = [];
+ 
+    Array.prototype.forEach.call(checkboxes, function(el) {
+        
+		
+		values.push(el.value);
+		
+    });
+
+		return values;
+    	$(".betdisplay").append(values);
+
+
+}
+function nextturn()
+{
+//xóa check và chỗ checker
+$(".info").css("display", "none");
+$(".betbyname").html("");
+$(".lacdisplay").html("");
+$(".checker").html("");
+var all_checkboxes = jQuery(':checkbox'); // choose & store all checkboxes
+all_checkboxes.prop('checked', false); // uncheck all of them
+
+}
+
+</script>
+<body>
+<h1>Bầu cua online</h1>
+<h2> code by xuxu.kun</h2>
+
+<!-- khong xai nua vi o co ui
+<div class="playtable">
+<ul class="playlist">
+<li class="playitem"><input name="player1bet" type="checkbox" value="1">Nai</input></li>
+<li class="playitem"><input name="player1bet" type="checkbox" value="2">Bầu</input></li>
+<li class="playitem"><input name="player1bet" type="checkbox" value="3">Gà</input></li>
+<li class="playitem"><input name="player1bet" type="checkbox" value="4">Cá</input></li>
+<li class="playitem"><input name="player1bet" type="checkbox" value="5">Cua</input></li>
+<li class="playitem"><input name="player1bet" type="checkbox" value="6">Tôm</input></li>
+</ul>
+
+</div>-->
+<div class="mainwrapper">
+<div class="leftcolumn">
+
+<div class="wrapper">
+<div class="betcheckdiv" style="float:left;width:200px;background-image:url('img/nai.gif');"><input class="mycheckbox" name="player1bet" type="checkbox" value="1"></input></div>
+<div class="betcheckdiv" style="float:left;width:200px;background-image:url('img/bau.gif');"><input class="mycheckbox" name="player1bet" type="checkbox" value="2"></input></div>
+<div class="betcheckdiv" style="float:right;width:200px;background-image:url('img/ga.gif');"><input class="mycheckbox" name="player1bet" type="checkbox" value="3"></input></div>
+<div style="clear:both;"></div>
+<div class="betcheckdiv" style="float:left;width:200px;background-image:url('img/ca.gif');"><input class="mycheckbox" name="player1bet" type="checkbox" value="4"></input></div>
+<div class="betcheckdiv" style="float:left;width:200px;background-image:url('img/cua.gif');"><input class="mycheckbox" name="player1bet" type="checkbox" value="5"></input></div>
+<div class="betcheckdiv" style="float:right;width:200px;background-image:url('img/tom.gif');"><input class="mycheckbox" name="player1bet" type="checkbox" value="6"></input></div>
+<div style="clear:both;"></div>
+</div>
+<br/>
+<button onclick="lac();" style="   padding: 10px;    font-weight: bold;    font-size: 15px;">Lắc lắc lắc!</button>
+
+</div> <!-- end of left column -->
+
+<!-- begin right column -->
+<div class="rightcolumn">
+<div class="showxingau"  style="display:none;">
+<img src="img/xingau.gif" width="500"/>
+</div>
+<div style="display:none;"  class="info" >
+<h2>Kết quả lắc</h2>	
+<div class="lacdisplay"></div>
+<br/><br/>
+Bạn đã đặt<br/><br/>
+<div class="betbyname"></div>
+<br/><br/>
+<div class="checker"></div>
+<div class="betdisplay"></div>
+<button onclick="nextturn();">Chơi tiếp</button>
+</div> <!-- end of playinfo -->
+</div> <!-- end of right column -->
+<div style="clear:both;"></div>
+<div class="playerinfo">
+<h1>Player info</h1>
+<div class="mainplayerinfo">
+<div class="subheader">Player 1</div>
+<div class="subsubheader">Name</div>
+<div class="subcontent">xuxu.kun</div>
+<div class="subsubheader">Số tiền</div>
+<div id="sotien" class="subcontent">100000</div>
+</div>
+</div>
+<div class="AIplayerinfo">
+<div class="subheader">Player 2</div>
+<div class="subsubheader">Name</div>
+<div class="subcontent">AI-xu</div>
+<div class="subsubheader">Số tiền</div>
+<div id="sotienplayer2" class="subcontent">100000</div>
+</div>
+<div style="clear:both;"></div>
+</div><!-- end of playerinfo -->
+</div> <!-- end of mainwrapper -->
+</body>
