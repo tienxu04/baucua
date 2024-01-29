@@ -4,86 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Page Title</title>
-       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .header {
-            background-color: #4267B2;
-            padding: 10px;
-            color: #fff;
-            text-align: center;
-        }
-
-        .main-content {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .left-column,
-        .right-column {
-            width: 48%;
-        }
-
-        .player-info {
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-
-        .mycheckbox {
-            width: 20px;
-            height: 20px;
-        }
-
-        .betcheckdiv {
-            width: 100%;
-            height: 200px;
-            text-align: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-
-        .subheader {
-            background: #3B5998;
-            padding: 10px;
-            color: #fff;
-        }
-
-        .subsubheader {
-            background: #E9EBEE;
-            padding: 10px;
-        }
-
-        .subcontent {
-            padding: 10px;
-            background: #fff;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-            }
-
-            .left-column,
-            .right-column {
-                width: 100%;
-            }
-        }
-    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
 </head>
 
                     <script>
@@ -95,26 +17,15 @@
                         let AIbetarray = [];
 
                         function xacdinh(x) {
-                            switch (x) {
-                                case 1:
-                                    x = "<img src=\"img/nai.gif\" style=\"width:80\"/>";
-                                    break;
-                                case 2:
-                                    x = "<img src=\"img/bau.gif\" style=\"width:80\"/>";
-                                    break;
-                                case 3:
-                                    x = "<img src=\"img/ga.gif\" style=\"width:80\"/>";
-                                    break;
-                                case 4:
-                                    x = "<img src=\"img/ca.gif\" style=\"width:80\"/>";
-                                    break;
-                                case 5:
-                                    x = "<img src=\"img/cua.gif\" style=\"width:80\"/>";
-                                    break;
-                                case 6:
-                                    x = "<img src=\"img/tom.gif\" style=\"width:80\"/>";
-                            }
-                            return x;
+                       switch (x) {
+        case 1: x = "<img src=\"img/nai.gif\" alt=\"Nai\"/>"; break;
+        case 2: x = "<img src=\"img/bau.gif\"alt=\"Bau\"/>"; break;
+        case 3: x = "<img src=\"img/ga.gif\" alt=\"Ga\"/>"; break;
+        case 4: x = "<img src=\"img/ca.gif\" alt=\"Ca\"/>"; break;
+        case 5: x = "<img src=\"img/cua.gif\" alt=\"Cua\"/>"; break;
+        case 6: x = "<img src=\"img/tom.gif\" alt=\"Tom\"/>"; break;
+    }
+    return x;
                         }
 
                         function xingaufunction() {
@@ -156,23 +67,16 @@
                                 $(".betdisplay").append(AIbetbyname);
                             }
 
-                            for (k = 0; k < betarray.length; k++) {
-                                x1 = betarray[k];
-                                if (x1 == 1) {
-                                    x1 = "<img src=\"img/nai.gif\" style=\"width:80\"/>";
-                                } else if (x1 == 2) {
-                                    x1 = "<img src=\"img/bau.gif\" style=\"width:80\"/>";
-                                } else if (x1 == 3) {
-                                    x1 = "<img src=\"img/ga.gif\" style=\"width:80\"/>";
-                                } else if (x1 == 4) {
-                                    x1 = "<img src=\"img/ca.gif\" style=\"width:80\"/>";
-                                } else if (x1 == 5) {
-                                    x1 = "<img src=\"img/cua.gif\" style=\"width:80\"/>";
-                                } else if (x1 == 6) {
-                                    x1 = "<img src=\"img/tom.gif\" style=\"width:80\"/>";
-                                }
-                                $(".betbyname").append(x1 + " ");
-                            }
+               // Inside the loop for setting image styles
+for (k = 0; k < betarray.length; k++) {
+    var x1 = betarray[k];
+    var x1ImageName = xacdinh(x1);  // Get the image name from xacdinh
+    var x1Image = 'img/' + x1ImageName.toLowerCase() + '.jpg';  // Construct the image URL
+    $(".betbyname").append('<img src="' + x1Image + '" alt="' + x1ImageName + '" class="responsive-image" />');
+}
+
+
+
                         }
 
                         function lac() {
@@ -259,90 +163,197 @@
                             AIbetarray = [];
                         }
                     </script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bầu cua online</title>
+    <!-- Include your existing stylesheets, scripts, or other dependencies here -->
+
+    <style>
+.playerinfo {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+.subheader {
+    background: #a50b2f;
+    padding: 5px;
+    color: #e2bd36;
+}
+
+.subsubheader {
+    background: #e2bd36;
+    padding: 5px;
+}
+
+.subcontent {
+    padding: 5px;
+    background: #dddcc9;
+}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .mainwrapper {
+            max-width: 800px; /* Adjusted max-width for better display */
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Clear the float from child elements */
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        .leftcolumn {
+            width: 45%;
+            float: left;
+        }
+
+        .rightcolumn {
+            width: 45%;
+            float: right;
+        }
+
+	.lacdisplay,
+	.betdisplay,
+        .betcheckdiv {
+            width: calc(33.33% - 20px); /* Three columns in a row with spacing */
+            box-sizing: border-box;
+            margin: 10px;
+            text-align: center;
+            position: relative;
+            float: left;
+        }
+
+        .betcheckdiv img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .responsive-checkbox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .betinfo {
+            /* Add styles for bet information */
+        }
+
+        .animation {
+            /* Add styles for animation */
+        }
+
+        .betmoneyinfo {
+            clear: both;
+            /* Add styles for bet money info */
+        }
+.betdisplay img {
+      max-width: 100%;
+        height: auto;
+        display: block;
+    }
+.lacdisplay img {
+      max-width: 100%;
+        height: auto;
+        display: block;
+    }
+    </style>
+</head>
 <body>
     <h1>Bầu cua online</h1>
-    <h2>Code by xuxu.kun</h2>
+    <h2> code by xuxu.kun</h2>
 
     <div class="mainwrapper">
-        <!-- Left column -->
-        <div class="leftcolumn">
-            <div class="wrapper">
-                <div class="betcheckdiv" style="float:left;width:200px;background-image:url('img/nai.gif');">
-                    <input class="mycheckbox" name="player1bet" type="checkbox" value="1"></input>
-                </div>
-                <div class="betcheckdiv" style="float:left;width:200px;background-image:url('img/bau.gif');">
-                    <input class="mycheckbox" name="player1bet" type="checkbox" value="2"></input>
-                </div>
-                <div class="betcheckdiv" style="float:right;width:200px;background-image:url('img/ga.gif');">
-                    <input class="mycheckbox" name="player1bet" type="checkbox" value="3"></input>
-                </div>
-                <div style="clear:both;"></div>
-                <div class="betcheckdiv" style="float:left;width:200px;background-image:url('img/ca.gif');">
-                    <input class="mycheckbox" name="player1bet" type="checkbox" value="4"></input>
-                </div>
-                <div class="betcheckdiv" style="float:left;width:200px;background-image:url('img/cua.gif');">
-                    <input class="mycheckbox" name="player1bet" type="checkbox" value="5"></input>
-                </div>
-                <div class="betcheckdiv" style="float:right;width:200px;background-image:url('img/tom.gif');">
-                    <input class="mycheckbox" name="player1bet" type="checkbox" value="6"></input>
-                </div>
-                <div style="clear:both;"></div>
-            </div>
-            <br/>
-            <button onclick="xacnhandat();" style="padding: 10px; font-weight: bold; font-size: 15px;">Xác nhận đặt</button>
-            <button onclick="lac();" style="padding: 10px; font-weight: bold; font-size: 15px;">Lắc lắc lắc!</button>
-        </div>
+      <!-- Left column - Bet grid -->
+<div class="leftcolumn">
+    <div class="betcheckdiv">
+        <img src="img/nai.gif" alt="Nai">
+        <input class="responsive-checkbox" type="checkbox" name="player1bet" value="1">
+    </div>
+    <div class="betcheckdiv">
+        <img src="img/bau.gif" alt="Bau">
+        <input class="responsive-checkbox" type="checkbox" name="player1bet" value="2">
+    </div>
+    <div class="betcheckdiv">
+        <img src="img/ga.gif" alt="Ga">
+        <input class="responsive-checkbox" type="checkbox" name="player1bet" value="3">
+    </div>
+    <div class="betcheckdiv">
+        <img src="img/ca.gif" alt="Ca">
+        <input class="responsive-checkbox" type="checkbox" name="player1bet" value="4">
+    </div>
+    <div class="betcheckdiv">
+        <img src="img/cua.gif" alt="Cua">
+        <input class="responsive-checkbox" type="checkbox" name="player1bet" value="5">
+    </div>
+    <div class="betcheckdiv">
+        <img src="img/tom.gif" alt="Tom">
+        <input class="responsive-checkbox" type="checkbox" name="player1bet" value="6">
+    </div>
+</div>
 
-        <!-- Right column -->
-        <div class="rightcolumn">
-            <div class="showxingau" style="display:none;">
-                <img src="img/xingau.gif" width="500"/>
-            </div>
-            <div style="display:block;" class="betinfo">
-                <h1>Xác nhận đặt</h1>
-                Bạn đã đặt<br/><br/>
-                <div class="betbyname"></div>
-                <br/><br/>
-                Máy đã đặt
-                <div class="betdisplay"></div>
-            </div>
-            <div style="display:none;" class="info">
-                <h2>Kết quả lắc</h2>
-                <div class="lacdisplay"></div>
-                <div class="checker"></div>
-                <br/><br/>
-                <button onclick="nextturn();">Chơi tiếp</button>
-            </div>
-        </div>
+<!-- Right column - Information and Animation -->
+<div class="rightcolumn">
+    <div class="betinfo" style="display:block;">
+        <h1>Xác nhận đặt</h1>
+        Bạn đã đặt<br/><br/>
+        <div class="betbyname"></div>
+        <br/><br/>
+        Máy đã đặt
+        <div class="betdisplay"></div>
+    </div>
 
-        <div style="clear:both;"></div>
+    <div class="info" style="display:none;">
+        <h2>Kết quả lắc</h2>
+        <div class="lacdisplay"></div>
+        <div class="checker"></div>
+        <br/><br/>
+        <button onclick="nextturn();">Chơi tiếp</button>
+    </div>
 
-        <!-- Player info -->
-        <div class="playerinfo">
-            <h1>Player info</h1>
+    <div class="showxingau" style="display:none;">
+        <img src="img/xingau.gif" width="500"/>
+    </div>
 
-            <!-- Main Player Info -->
-            <div class="mainplayerinfo">
-                <div class="subheader">Player 1</div>
-                <div class="subsubheader">Name</div>
-                <div class="subcontent">xuxu.kun</div>
-                <div class="subsubheader">Số tiền</div>
-                <div id="sotien" class="subcontent">100000</div>
-            </div>
+    <!-- Buttons and Bottom div -->
+    <div style="clear:both;"></div>
+    <button onclick="xacnhandat();" style="padding: 10px; font-weight: bold; font-size: 15px;">Xác nhận đặt</button>
+    <button onclick="lac();" style="padding: 10px; font-weight: bold; font-size: 15px;">Lắc lắc lắc!</button>
 
-            <!-- AI Player Info -->
-            <div class="AIplayerinfo">
-                <div class="subheader">Player 2</div>
-                <div class="subsubheader">Name</div>
-                <div class="subcontent">AI-xu</div>
-                <div class="subsubheader">Số tiền</div>
-                <div id="sotienplayer2" class="subcontent">100000</div>
-            </div>
+    <!-- Bottom div -->
+    <div class="betmoneyinfo">
+        <!-- Add content for bet money info -->
+    </div>
+</div>
 
-            <div style="clear:both;"></div>
-        </div>
+
+
+        <!-- Bet money info at the bottom -->
+       <div class="playerinfo">
+    <h1>Player info</h1>
+    <div class="mainplayerinfo">
+        <div class="subheader">Player 1</div>
+        <div class="subsubheader">Name</div>
+        <div class="subcontent">xuxu.kun</div>
+        <div class="subsubheader">Số tiền</div>
+        <div id="sotien" class="subcontent">100000</div>
+    </div>
+</div>
     </div>
 </body>
-
+</html>
 
 </html>
