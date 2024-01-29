@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #4267B2;
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .left-column,
+        .right-column {
+            width: 48%;
+        }
+
+        .player-info {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .mycheckbox {
+            width: 20px;
+            height: 20px;
+        }
+
+        .betcheckdiv {
+            width: 100%;
+            height: 200px;
+            text-align: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .subheader {
+            background: #3B5998;
+            padding: 10px;
+            color: #fff;
+        }
+
+        .subsubheader {
+            background: #E9EBEE;
+            padding: 10px;
+        }
+
+        .subcontent {
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .left-column,
+            .right-column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+                    <script>
+                        const POINT_VALUE = 5000;
+                        const TIMEOUT_DURATION = 3000;
+
+                        let sotienplayer1 = 100000;
+                        let betarray = [];
+                        let AIbetarray = [];
+
+                        function xacdinh(x) {
+                            switch (x) {
+                                case 1:
+                                    x = "<img src=\"img/nai.gif\" style=\"width:80\"/>";
+                                    break;
+                                case 2:
+                                    x = "<img src=\"img/bau.gif\" style=\"width:80\"/>";
+                                    break;
+                                case 3:
+                                    x = "<img src=\"img/ga.gif\" style=\"width:80\"/>";
+                                    break;
+                                case 4:
+                                    x = "<img src=\"img/ca.gif\" style=\"width:80\"/>";
+                                    break;
+                                case 5:
+                                    x = "<img src=\"img/cua.gif\" style=\"width:80\"/>";
+                                    break;
+                                case 6:
+                                    x = "<img src=\"img/tom.gif\" style=\"width:80\"/>";
+                            }
+                            return x;
+                        }
+
+                        function xingaufunction() {
+                            $(".showxingau").css("display", "none");
+                            $(".betinfo").css("display", "none");
+                            $(".info").css("display", "block");
+                        }
+
+                        function xacnhandat() {
+                            $(".betbyname").html("");
+                            $(".betdisplay").html("");
+                            
+                            $("input:checkbox[name=player1bet]:checked").each(function () {
+                                betarray.push($(this).val());
+                            });
+
+                            sodat = betarray.length;
+                            AIbetarray = [];
+                            if (sodat == 1) {
+                                AIbet1 = Math.floor((Math.random() * 6) + 1);
+                                AIbet2 = "";
+                                AIbet3 = "";
+                            } else if (sodat == 2) {
+                                AIbet1 = Math.floor((Math.random() * 6) + 1);
+                                AIbet2 = Math.floor((Math.random() * 6) + 1);
+                                AIbet3 = "";
+                            } else if (sodat == 3) {
+                                AIbet1 = Math.floor((Math.random() * 6) + 1);
+                                AIbet2 = Math.floor((Math.random() * 6) + 1);
+                                AIbet3 = Math.floor((Math.random() * 6) + 1);
+                            }
+
+                            AIbetarray.push(AIbet1);
+                            AIbetarray.push(AIbet2);
+                            AIbetarray.push(AIbet3);
+
+                            for (var i = 0; i < AIbetarray.length; i++) {
+                                AIbetbyname = xacdinh(AIbetarray[i]);
+                                $(".betdisplay").append(AIbetbyname);
+                            }
+
+                            for (k = 0; k < betarray.length; k++) {
+                                x1 = betarray[k];
+                                if (x1 == 1) {
+                                    x1 = "<img src=\"img/nai.gif\" style=\"width:80\"/>";
+                                } else if (x1 == 2) {
+                                    x1 = "<img src=\"img/bau.gif\" style=\"width:80\"/>";
+                                } else if (x1 == 3) {
+                                    x1 = "<img src=\"img/ga.gif\" style=\"width:80\"/>";
+                                } else if (x1 == 4) {
+                                    x1 = "<img src=\"img/ca.gif\" style=\"width:80\"/>";
+                                } else if (x1 == 5) {
+                                    x1 = "<img src=\"img/cua.gif\" style=\"width:80\"/>";
+                                } else if (x1 == 6) {
+                                    x1 = "<img src=\"img/tom.gif\" style=\"width:80\"/>";
+                                }
+                                $(".betbyname").append(x1 + " ");
+                            }
+                        }
+
+                        function lac() {
+                            xingau1 = Math.floor((Math.random() * 6) + 1);
+                            xingau1a = xacdinh(xingau1);
+
+                            xingau2 = Math.floor((Math.random() * 6) + 1);
+                            xingau2a = xacdinh(xingau2);
+
+                            xingau3 = Math.floor((Math.random() * 6) + 1);
+                            xingau3a = xacdinh(xingau3);
+
+                            ketqua = xingau1a + " " + xingau2a + " " + xingau3a;
+                            $(".lacdisplay").append(ketqua);
+
+                            ketqualac = [xingau1, xingau2, xingau3];
+
+                            var sotrung = 0;
+                            var sotrat = 0;
+
+                            function include(arr, obj) {
+                                for (var i = 0; i < arr.length; i++) {
+                                    if (arr[i] == obj) {
+                                        sotrung = sotrung + 1;
+                                    }
+                                }
+                            }
+
+                            var sotrungAI = 0;
+                            var sotratAI = 0;
+
+                            function include2(arr, obj) {
+                                for (var i = 0; i < arr.length; i++) {
+                                    if (arr[i] == obj) {
+                                        alert("trúng");
+                                        sotrungAI = sotrungAI + 1;
+                                    }
+                                }
+                            }
+
+                            for (i = 0; i < betarray.length; i++) {
+                                include(ketqualac, betarray[i]);
+                            }
+
+                            alert("đang check");
+
+                            for (j = 0; j < AIbetarray.length; j++) {
+                                include2(ketqualac, AIbetarray[j]);
+                            }
+
+                            sotrat = sodat - sotrung;
+                            sotienupdate = sotrung * POINT_VALUE + (0 - (sotrat * POINT_VALUE));
+
+                            $(".showxingau").css("display", "block");
+                            $(".betinfo").css("display", "none");
+                            setTimeout(xingaufunction, TIMEOUT_DURATION);
+
+                            $(".checker").html("Bạn đặt: " + sodat + "<br/>Trúng: " + sotrung + "<br/>Trật :" + sotrat + "<br/>Số tiền nhận được: " + sotienupdate + "<br/>Máy trúng: " + sotrungAI);
+                            $("#sotien").html(sotienplayer1 + sotienupdate);
+                            sotienplayer1 = sotienplayer1 + sotienupdate;
+                        }
+
+                        function betconfirm() {
+                            var checkboxes = document.querySelectorAll('input[name="player1bet"]:checked'), values = [];
+
+                            Array.prototype.forEach.call(checkboxes, function (el) {
+                                values.push(el.value);
+                            });
+
+                            return values;
+                        }
+
+                        function nextturn() {
+                            sodat = 0;
+                            $(".info").css("display", "none");
+                            $(".betbyname").html("");
+                            $(".betdisplay").html("");
+                            $(".lacdisplay").html("");
+                            $(".checker").html("");
+                            var all_checkboxes = jQuery(':checkbox');
+                            all_checkboxes.prop('checked', false);
+                            $(".betinfo").css("display", "block");
+                            betarray = [];
+                            AIbetarray = [];
+                        }
+                    </script>
+<body>
+    <h1>Bầu cua online</h1>
+    <h2>Code by xuxu.kun</h2>
+
+    <div class="mainwrapper">
+        <!-- Left column -->
+        <div class="leftcolumn">
+            <div class="wrapper">
+                <div class="betcheckdiv" style="float:left;width:200px;background-image:url('img/nai.gif');">
+                    <input class="mycheckbox" name="player1bet" type="checkbox" value="1"></input>
+                </div>
+                <div class="betcheckdiv" style="float:left;width:200px;background-image:url('img/bau.gif');">
+                    <input class="mycheckbox" name="player1bet" type="checkbox" value="2"></input>
+                </div>
+                <div class="betcheckdiv" style="float:right;width:200px;background-image:url('img/ga.gif');">
+                    <input class="mycheckbox" name="player1bet" type="checkbox" value="3"></input>
+                </div>
+                <div style="clear:both;"></div>
+                <div class="betcheckdiv" style="float:left;width:200px;background-image:url('img/ca.gif');">
+                    <input class="mycheckbox" name="player1bet" type="checkbox" value="4"></input>
+                </div>
+                <div class="betcheckdiv" style="float:left;width:200px;background-image:url('img/cua.gif');">
+                    <input class="mycheckbox" name="player1bet" type="checkbox" value="5"></input>
+                </div>
+                <div class="betcheckdiv" style="float:right;width:200px;background-image:url('img/tom.gif');">
+                    <input class="mycheckbox" name="player1bet" type="checkbox" value="6"></input>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <br/>
+            <button onclick="xacnhandat();" style="padding: 10px; font-weight: bold; font-size: 15px;">Xác nhận đặt</button>
+            <button onclick="lac();" style="padding: 10px; font-weight: bold; font-size: 15px;">Lắc lắc lắc!</button>
+        </div>
+
+        <!-- Right column -->
+        <div class="rightcolumn">
+            <div class="showxingau" style="display:none;">
+                <img src="img/xingau.gif" width="500"/>
+            </div>
+            <div style="display:block;" class="betinfo">
+                <h1>Xác nhận đặt</h1>
+                Bạn đã đặt<br/><br/>
+                <div class="betbyname"></div>
+                <br/><br/>
+                Máy đã đặt
+                <div class="betdisplay"></div>
+            </div>
+            <div style="display:none;" class="info">
+                <h2>Kết quả lắc</h2>
+                <div class="lacdisplay"></div>
+                <div class="checker"></div>
+                <br/><br/>
+                <button onclick="nextturn();">Chơi tiếp</button>
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+
+        <!-- Player info -->
+        <div class="playerinfo">
+            <h1>Player info</h1>
+
+            <!-- Main Player Info -->
+            <div class="mainplayerinfo">
+                <div class="subheader">Player 1</div>
+                <div class="subsubheader">Name</div>
+                <div class="subcontent">xuxu.kun</div>
+                <div class="subsubheader">Số tiền</div>
+                <div id="sotien" class="subcontent">100000</div>
+            </div>
+
+            <!-- AI Player Info -->
+            <div class="AIplayerinfo">
+                <div class="subheader">Player 2</div>
+                <div class="subsubheader">Name</div>
+                <div class="subcontent">AI-xu</div>
+                <div class="subsubheader">Số tiền</div>
+                <div id="sotienplayer2" class="subcontent">100000</div>
+            </div>
+
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+</body>
+
+
+</html>
